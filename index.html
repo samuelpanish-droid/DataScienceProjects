@@ -3,130 +3,215 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Samuel Anish · Data Science Portfolio</title>
-<meta name="description" content="Data science portfolio: machine learning, predictive analytics, LLM prompt engineering and data preparation projects in Python and SQL.">
+<title>Samuel Anish · Data Science &amp; Engineering Portfolio</title>
+<meta name="description" content="Samuel Anish, Technical Lead at JPMorgan Chase and data science graduate student. Portfolio of machine learning, generative AI and data engineering projects in Python and SQL.">
+<meta property="og:title" content="Samuel Anish · Data Science &amp; Engineering Portfolio">
+<meta property="og:description" content="Machine learning, generative AI and production engineering projects with measured results.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f7f5f0;
     --surface: #ffffff;
-    --ink: #1c1f23;
-    --muted: #5d636b;
-    --line: #e2ded5;
+    --ink: #1a1d21;
+    --muted: #5b6168;
+    --faint: #8a9097;
+    --line: #e3dfd6;
     --accent: #0f6b5c;
-    --accent-soft: #e3f0ec;
-    --chip: #efece5;
+    --accent-ink: #ffffff;
+    --accent-soft: #e2efeb;
+    --chip: #f0ede6;
+    --shadow: 0 1px 2px rgba(20,24,28,.04), 0 8px 24px rgba(20,24,28,.06);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #14171a;
-      --surface: #1c2024;
-      --ink: #eceae5;
-      --muted: #a2a8ae;
-      --line: #2e3439;
+      --bg: #121518;
+      --surface: #1a1e22;
+      --ink: #ecebe6;
+      --muted: #a3a9af;
+      --faint: #7b8288;
+      --line: #2b3136;
       --accent: #5fc4ae;
-      --accent-soft: #1d3330;
-      --chip: #262b30;
+      --accent-ink: #0d1a17;
+      --accent-soft: #1a302c;
+      --chip: #242a2f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
     }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.6 Inter, system-ui, sans-serif;
-  }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   a { color: var(--accent); }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  code { font-family: "JetBrains Mono", monospace; font-size: .85em; background: var(--chip); padding: 1px 5px; border-radius: 4px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .serif { font-family: Fraunces, Georgia, serif; }
+  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .76rem; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
 
-  /* Nav */
-  header.nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
-  }
-  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-  .brand { font-family: Fraunces, Georgia, serif; font-weight: 650; font-size: 1.1rem; color: var(--ink); text-decoration: none; }
-  nav a { color: var(--muted); text-decoration: none; margin-left: 22px; font-size: .92rem; font-weight: 500; }
-  nav a:hover { color: var(--ink); }
+  /* ---------- Nav ---------- */
+  header.nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; }
+  .brand .mono { width: 34px; height: 34px; border-radius: 8px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-family: Fraunces, Georgia, serif; font-size: .95rem; }
+  nav { display: flex; align-items: center; gap: 4px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; padding: 6px 10px; border-radius: 6px; }
+  nav a:hover { color: var(--ink); background: var(--chip); }
+  nav a.cta { color: var(--accent-ink); background: var(--accent); margin-left: 8px; }
+  nav a.cta:hover { background: var(--accent); opacity: .9; }
 
-  /* Hero */
-  .hero { padding-top: 88px; padding-bottom: 64px; }
-  .eyebrow { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
-  .hero h1 {
-    font-family: Fraunces, Georgia, serif; font-weight: 650;
-    font-size: clamp(2.2rem, 5.5vw, 3.6rem); line-height: 1.08;
-    margin: 14px 0 20px; max-width: 18ch;
-  }
-  .hero p.lede { font-size: 1.15rem; color: var(--muted); max-width: 60ch; margin: 0 0 28px; }
+  /* ---------- Hero ---------- */
+  .hero { padding: 80px 0 56px; display: grid; grid-template-columns: 1.55fr 1fr; gap: 56px; align-items: start; }
+  .hero h1 { font-family: Fraunces, Georgia, serif; font-weight: 650; font-size: clamp(2.3rem, 5vw, 3.7rem); line-height: 1.06; margin: 14px 0 20px; letter-spacing: -.01em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .lede { font-size: 1.14rem; color: var(--muted); max-width: 58ch; margin: 0 0 30px; }
   .btns { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn {
-    display: inline-block; padding: 11px 20px; border-radius: 8px;
-    font-weight: 600; font-size: .95rem; text-decoration: none;
-    border: 1px solid var(--accent);
-  }
-  .btn.primary { background: var(--accent); color: var(--bg); }
-  .btn.ghost { color: var(--accent); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--accent); transition: transform .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { color: var(--accent); background: transparent; }
 
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 56px; }
-  .stat { border-top: 2px solid var(--ink); padding-top: 12px; }
-  .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.9rem; font-weight: 650; }
-  .stat span { color: var(--muted); font-size: .9rem; }
+  .profile { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); }
+  .profile .avatar { width: 72px; height: 72px; border-radius: 16px; background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--ink))); color: #fff; display: grid; place-items: center; font-family: Fraunces, Georgia, serif; font-size: 1.7rem; font-weight: 650; }
+  .profile h2 { font-family: Fraunces, Georgia, serif; font-size: 1.45rem; margin: 16px 0 2px; }
+  .profile .role { color: var(--muted); font-size: .95rem; margin: 0 0 18px; }
+  .facts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .facts li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .88rem; }
+  .facts li span:first-child { color: var(--faint); }
+  .facts li span:last-child { text-align: right; font-weight: 500; }
+  .status { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: .85rem; color: var(--muted); }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #2fb37a; box-shadow: 0 0 0 4px color-mix(in srgb, #2fb37a 22%, transparent); }
 
-  /* Sections */
-  section { padding: 64px 0; border-top: 1px solid var(--line); }
-  h2 { font-family: Fraunces, Georgia, serif; font-weight: 650; font-size: 2rem; margin: 0 0 8px; }
-  .section-intro { color: var(--muted); max-width: 62ch; margin: 0 0 36px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); margin-bottom: 72px; overflow: hidden; }
+  .stat { padding: 22px 24px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat b { display: block; font-family: Fraunces, Georgia, serif; font-size: 2rem; font-weight: 650; line-height: 1.1; }
+  .stat span { color: var(--muted); font-size: .86rem; }
 
-  /* Featured project */
-  .featured {
-    display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-    padding: 32px; margin-bottom: 28px;
-  }
-  .featured h3 { font-family: Fraunces, Georgia, serif; font-size: 1.6rem; margin: 6px 0 12px; line-height: 1.2; }
-  .metric-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-  .metric-list li { background: var(--accent-soft); border-radius: 10px; padding: 14px 16px; }
-  .metric-list b { font-family: Fraunces, Georgia, serif; font-size: 1.5rem; display: block; color: var(--accent); }
-  .metric-list span { font-size: .88rem; color: var(--muted); }
+  /* ---------- Sections ---------- */
+  section { padding: 80px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; margin-bottom: 40px; align-items: end; }
+  h2.sec { font-family: Fraunces, Georgia, serif; font-weight: 650; font-size: clamp(1.8rem, 3.5vw, 2.4rem); line-height: 1.1; margin: 8px 0 0; }
+  .sec-intro { color: var(--muted); margin: 0; max-width: 62ch; }
 
-  /* Cards */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-  .card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
-    padding: 24px; display: flex; flex-direction: column;
-  }
-  .card .tag { font-family: "JetBrains Mono", monospace; font-size: .74rem; color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
-  .card h3 { font-size: 1.12rem; margin: 8px 0 10px; line-height: 1.3; }
-  .card p { color: var(--muted); font-size: .94rem; margin: 0 0 14px; }
-  .result { font-size: .9rem; border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; margin: 0 0 16px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 16px; }
+  /* Focus areas */
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pillar { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+  .pillar .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 16px; }
+  .pillar h3 { font-size: 1.08rem; margin: 0 0 8px; }
+  .pillar p { color: var(--muted); font-size: .93rem; margin: 0; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; }
+  .about-grid p { margin: 0 0 16px; }
+  .about-grid p.big { font-size: 1.2rem; line-height: 1.55; color: var(--ink); }
+  .about-grid p.muted { color: var(--muted); }
+  .principles { list-style: none; margin: 0; padding: 0; }
+  .principles li { padding: 14px 0 14px 32px; border-bottom: 1px solid var(--line); position: relative; font-size: .94rem; }
+  .principles li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .principles strong { display: block; }
+  .principles span { color: var(--muted); }
+
+  /* Experience */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .job { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 30px 32px; box-shadow: var(--shadow); }
+  .job::before { content: ""; position: absolute; left: -28px; top: 34px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); }
+  .job-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline; }
+  .job h3 { font-family: Fraunces, Georgia, serif; font-size: 1.5rem; margin: 4px 0 2px; }
+  .job .org { color: var(--muted); font-weight: 500; }
+  .pill { font-size: .78rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 4px 10px; border-radius: 999px; }
+  .job .summary { margin: 16px 0 24px; max-width: 74ch; }
+  .job-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 32px; }
+  .job-grid h4 { font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .job-grid ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: .92rem; }
+  .job-grid li { margin-bottom: 6px; }
+  .job .chips { margin-top: 24px; }
+
+  /* Chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chips span { background: var(--chip); border-radius: 999px; padding: 3px 10px; font-size: .76rem; color: var(--muted); }
-  .links { display: flex; gap: 16px; font-size: .9rem; font-weight: 600; }
+
+  /* Projects */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .filters button { font: inherit; font-size: .88rem; font-weight: 500; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
+  .filters button:hover { color: var(--ink); }
+  .filters button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .filters button .n { opacity: .6; margin-left: 4px; }
+
+  .featured { display: grid; grid-template-columns: 1.25fr 1fr; gap: 36px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 34px; margin-bottom: 24px; box-shadow: var(--shadow); }
+  .featured h3 { font-family: Fraunces, Georgia, serif; font-size: 1.65rem; margin: 8px 0 12px; line-height: 1.2; }
+  .featured p { margin: 0 0 12px; }
+  .metric-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; align-content: start; }
+  .metric-list li { background: var(--accent-soft); border-radius: 12px; padding: 16px 18px; }
+  .metric-list b { font-family: Fraunces, Georgia, serif; font-size: 1.6rem; display: block; color: var(--accent); line-height: 1.2; }
+  .metric-list span { font-size: .86rem; color: var(--muted); }
+
+  .group-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 48px 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .group-title h3 { font-family: Fraunces, Georgia, serif; font-size: 1.3rem; margin: 0; }
+  .group-title span { color: var(--faint); font-size: .85rem; }
+  .group-note { color: var(--muted); font-size: .92rem; margin: -4px 0 20px; max-width: 72ch; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .card .tag { font-family: "JetBrains Mono", monospace; font-size: .72rem; color: var(--accent); text-transform: uppercase; letter-spacing: .05em; }
+  .card h3 { font-size: 1.1rem; margin: 8px 0 10px; line-height: 1.3; }
+  .card p { color: var(--muted); font-size: .93rem; margin: 0 0 14px; }
+  .result { font-size: .89rem; color: var(--ink) !important; border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; }
+  .card .chips { margin: auto 0 16px; padding-top: 4px; }
+  .links { display: flex; gap: 18px; font-size: .9rem; font-weight: 600; flex-wrap: wrap; }
   .links a { text-decoration: none; }
   .links a:hover { text-decoration: underline; }
+  .hide { display: none !important; }
+  .run-note { margin-top: 24px; padding: 16px 20px; background: var(--chip); border-radius: 12px; font-size: .9rem; color: var(--muted); }
 
-  h3.group { font-family: Fraunces, Georgia, serif; font-size: 1.25rem; margin: 44px 0 16px; }
+  /* Skills */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
+  .skill { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .skill h3 { font-size: 1rem; margin: 0 0 12px; display: flex; align-items: center; gap: 10px; }
+  .skill h3::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--accent); }
 
-  /* About / Contact shells */
-  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
-  .skills dt { font-weight: 600; font-size: .9rem; margin-top: 12px; }
-  .skills dd { margin: 2px 0 0; color: var(--muted); font-size: .92rem; }
-  .todo { display: inline-block; background: var(--chip); border: 1px dashed var(--muted); border-radius: 8px; padding: 2px 8px; font-size: .88rem; color: var(--muted); }
-  .contact-list { list-style: none; padding: 0; margin: 0; }
-  .contact-list li { padding: 14px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .contact-list li span { color: var(--muted); }
+  /* Education */
+  .edu { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 32px; }
+  .edu h3 { font-family: Fraunces, Georgia, serif; font-size: 1.4rem; margin: 6px 0 8px; }
+  .edu p { color: var(--muted); margin: 0; font-size: .94rem; }
+  .courses { list-style: none; margin: 0; padding: 0; }
+  .courses li { display: grid; grid-template-columns: 88px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .93rem; }
+  .courses li:last-child { border-bottom: none; }
+  .courses code { background: none; padding: 0; color: var(--accent); font-weight: 500; }
+  .courses span { color: var(--muted); display: block; font-size: .85rem; }
 
-  footer { padding: 32px 0 48px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; background: var(--ink); color: var(--bg); border-radius: 20px; padding: 48px; }
+  .contact h2 { font-family: Fraunces, Georgia, serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin: 8px 0 12px; line-height: 1.15; }
+  .contact .eyebrow { color: color-mix(in srgb, var(--accent) 70%, var(--bg)); }
+  .contact p { color: color-mix(in srgb, var(--bg) 72%, var(--ink)); margin: 0; }
+  .contact-links { display: grid; gap: 10px; }
+  .contact-links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; border-radius: 12px; border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent); color: var(--bg); text-decoration: none; transition: background .15s; }
+  .contact-links a:hover { background: color-mix(in srgb, var(--bg) 8%, transparent); }
+  .contact-links small { display: block; font-size: .75rem; opacity: .65; text-transform: uppercase; letter-spacing: .06em; }
+  .contact-links strong { font-weight: 500; word-break: break-all; }
 
-  @media (max-width: 760px) {
-    nav a { margin-left: 14px; }
-    .featured, .two-col { grid-template-columns: 1fr; }
-    .featured { padding: 22px; }
-    .hero { padding-top: 56px; padding-bottom: 40px; }
+  footer { padding: 36px 0 48px; color: var(--faint); font-size: .85rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--muted); text-decoration: none; margin-left: 16px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero, .about-grid, .sec-head, .featured, .edu, .contact { grid-template-columns: 1fr; }
+    .hero { gap: 36px; padding-top: 56px; }
+    .pillars, .job-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    nav a:not(.cta) { display: none; }
+    .contact { padding: 32px 24px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    section { padding: 56px 0; }
+    .featured, .job, .edu { padding: 22px; }
+    .stat { padding: 16px; }
+    .stat b { font-size: 1.6rem; }
   }
 </style>
 </head>
@@ -134,66 +219,183 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top">Samuel Anish</a>
+    <a class="brand" href="#top"><span class="mono">SA</span>Samuel Anish</a>
     <nav>
       <a href="#about">About</a>
+      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a class="cta" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
-  <!-- HERO -->
-  <div class="wrap hero">
-    <div class="eyebrow">Data Science Portfolio</div>
-    <h1>Turning messy data into decisions a business can act on.</h1>
-    <p class="lede">I build predictive models, clean and structure data, and test how large language models behave in real workflows. Every project here ends with a measured result, not just code.</p>
-    <div class="btns">
-      <a class="btn primary" href="#projects">See projects</a>
-      <a class="btn ghost" href="https://github.com/samuelpanish-droid/DataScienceProjects">GitHub repo</a>
+
+  <!-- ================= HERO ================= -->
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Technical Lead · Data Science · Generative AI</div>
+        <h1>Production engineering meets <em>applied machine learning</em>.</h1>
+        <p class="lede">I lead software delivery for the disputes and fraud customer journey at JPMorgan Chase, and I build data science and generative AI projects that end with a measured business result, not just code.</p>
+        <div class="btns">
+          <a class="btn primary" href="#projects">View projects →</a>
+          <a class="btn ghost" href="https://github.com/samuelpanish-droid/DataScienceProjects">GitHub repository</a>
+        </div>
+      </div>
+
+      <aside class="profile">
+        <div class="avatar">SA</div>
+        <h2>Samuel Anish</h2>
+        <p class="role">Technical Lead, JPMorgan Chase</p>
+        <ul class="facts">
+          <li><span>Domain</span><span>Disputes &amp; fraud</span></li>
+          <li><span>Engineering</span><span>React · J2EE · CI/CD</span></li>
+          <li><span>Data science</span><span>Python · SQL · scikit-learn</span></li>
+          <li><span>GenAI</span><span>RAG · LoRA · LLM evaluation</span></li>
+          <li><span>Education</span><span>Graduate study, Data Science</span></li>
+        </ul>
+        <div class="status">Open to data science &amp; ML conversations</div>
+      </aside>
     </div>
+
     <div class="stats">
       <div class="stat"><b>$275K</b><span>estimated net value from a churn-retention model</span></div>
       <div class="stat"><b>0.845</b><span>ROC-AUC on telecom churn prediction</span></div>
-      <div class="stat"><b>4 / 4</b><span>adversarial prompts handled safely by an LLM support assistant</span></div>
-      <div class="stat"><b>9</b><span>end-to-end projects in Python &amp; SQL</span></div>
+      <div class="stat"><b>4 / 4</b><span>adversarial prompts handled safely by an LLM assistant</span></div>
+      <div class="stat"><b>15</b><span>projects across data science and generative AI</span></div>
     </div>
   </div>
 
-  <!-- ABOUT (shell) -->
-  <section id="about">
-    <div class="wrap two-col">
-      <div>
-        <h2>About</h2>
-        <p class="section-intro">I'm a Technical Lead at JPMorgan Chase, where my work centers on software development, and a graduate student in data science.</p>
-        <p>Building and leading production software has taught me what it takes to ship reliable systems. Data science adds the other half: using models to answer business questions about customer retention, risk and customer experience. I bring an engineer's habits to that work, including clean pipelines, reproducible results and code that a team can maintain.</p>
-        <p>I'm especially interested in applied machine learning and generative AI that ship as real products, not just notebooks.</p>
+  <!-- ================= FOCUS AREAS ================= -->
+  <section id="focus" style="border-top:none;padding-top:0">
+    <div class="wrap">
+      <div class="pillars">
+        <div class="pillar">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6"/></svg></div>
+          <h3>Production engineering</h3>
+          <p>Resilient, observable software for a regulated, high-stakes customer journey, delivered through CI/CD with peer review and production support.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+          <h3>Applied machine learning</h3>
+          <p>Classification, clustering and feature selection with leak-free pipelines, cross-validation and results translated into business value.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5z"/></svg></div>
+          <h3>Generative AI</h3>
+          <p>Prompt design, retrieval-augmented chat, fine-tuning with LoRA and evaluation that checks LLM output programmatically.</p>
+        </div>
       </div>
-      <dl class="skills">
-        <dt>Languages</dt><dd>Python, SQL</dd>
-        <dt>Data preparation</dt><dd>pandas, NumPy, BeautifulSoup, SQLite, ETL</dd>
-        <dt>Machine learning</dt><dd>scikit-learn pipelines, logistic regression, random forests, KNN, K-means, PCA, grid search</dd>
-        <dt>Generative AI</dt><dd>Prompt engineering, Anthropic &amp; OpenAI APIs, structured JSON output, few-shot &amp; chain-of-thought</dd>
-        <dt>Visualization &amp; tools</dt><dd>Matplotlib, Seaborn, Jupyter, Git, GitHub</dd>
-      </dl>
     </div>
   </section>
 
-  <!-- PROJECTS (fully populated) -->
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">About</div>
+          <h2 class="sec" style="margin-bottom:24px">An engineer who builds with data.</h2>
+          <p class="big">I'm a Technical Lead at JPMorgan Chase, where I build the software customers use to raise disputes and report fraud, and a graduate student in data science.</p>
+          <p class="muted">Leading production engineering on a high-stakes customer journey has taught me what it takes to ship reliable systems: resilient design, observability, peer review and safe releases. Data science adds the other half: using models to answer business questions about fraud, risk, retention and customer experience.</p>
+          <p class="muted">I'm especially interested in applied machine learning and generative AI that ship as real products, not just notebooks.</p>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:8px">How I work</div>
+          <ul class="principles">
+            <li><strong>Start from the business question</strong><span>Every model is tied to a decision, a metric and a cost.</span></li>
+            <li><strong>Measure, don't eyeball</strong><span>Holdout sets, cross-validation and programmatic checks on LLM output.</span></li>
+            <li><strong>Build it like production</strong><span>Pipelines, reproducible seeds and code a team can maintain.</span></li>
+            <li><strong>Be honest about limits</strong><span>Each project documents what the result does and doesn't show.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Experience</div>
+          <h2 class="sec">Professional experience</h2>
+        </div>
+        <p class="sec-intro">Leading delivery on the disputes and fraud customer journey, from requirements and UI through observability, release and production support.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="job">
+          <div class="job-head">
+            <div>
+              <h3>Technical Lead</h3>
+              <div class="org">JPMorgan Chase · Disputes &amp; Fraud customer journey</div>
+            </div>
+            <span class="pill">Current role</span>
+          </div>
+          <p class="summary">I design resilient, scalable software solutions for the journey customers follow to create a dispute or report fraud, across hybrid environments. I lead delivery from product requirements through production release and support.</p>
+          <div class="job-grid">
+            <div>
+              <h4>Build</h4>
+              <ul>
+                <li>Develop high-quality production code using React and J2EE.</li>
+                <li>Partner with the product team to turn requirements into UI pages.</li>
+                <li>Apply Agile techniques and patterns throughout development.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Quality &amp; reliability</h4>
+              <ul>
+                <li>Lead peer code reviews to raise the quality of deliverables.</li>
+                <li>Build in non-functional requirements: telemetry, monitoring, alerting and log aggregation with Splunk and Dynatrace.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Ship &amp; support</h4>
+              <ul>
+                <li>Deploy services to production through standard CI/CD pipelines.</li>
+                <li>Support production releases and resolve business issues arising from production changes.</li>
+                <li>Coordinate across multiple teams for seamless feature integration.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="chips">
+            <span>React</span><span>J2EE</span><span>Hybrid environments</span><span>Splunk</span><span>Dynatrace</span><span>CI/CD</span><span>Agile</span><span>Code review</span><span>Cross-team delivery</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
   <section id="projects">
     <div class="wrap">
-      <h2>Projects</h2>
-      <p class="section-intro">Ordered by business impact. Each card links to the code and a README with the full method and results.</p>
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Projects</div>
+          <h2 class="sec">Selected work</h2>
+        </div>
+        <p class="sec-intro">Applied machine learning, generative AI and data preparation. Each project links to its code, with methods, results and limitations documented.</p>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="on" data-filter="all">All<span class="n"></span></button>
+        <button data-filter="ml">Machine learning<span class="n"></span></button>
+        <button data-filter="genai">Generative AI<span class="n"></span></button>
+        <button data-filter="data">Data preparation<span class="n"></span></button>
+      </div>
 
       <!-- Featured -->
-      <article class="featured">
+      <article class="featured item" data-cat="ml">
         <div>
           <div class="eyebrow">Featured · Classification · Business impact</div>
           <h3>Customer Churn Prediction &amp; Revenue Impact</h3>
           <p>Telecom companies lose revenue every time a customer cancels. Using 7,043 IBM Telco customers, I built a leak-free scikit-learn pipeline, compared logistic regression with a random forest, then ranked customers by risk to size a targeted retention campaign.</p>
           <p>Logistic regression won on balance (ROC-AUC 0.845, F1 0.631). The random forest caught more churners but flagged too many loyal customers to be cost-effective.</p>
-          <div class="chips" style="margin:16px 0">
+          <div class="chips" style="margin:18px 0">
             <span>Python</span><span>scikit-learn</span><span>ColumnTransformer</span><span>Stratified CV</span><span>Matplotlib</span>
           </div>
           <div class="links">
@@ -208,113 +410,256 @@
         </ul>
       </article>
 
-      <div class="grid">
-        <article class="card">
-          <div class="tag">Generative AI · LLM evaluation</div>
-          <h3>Prompt Engineering with Large Language Models</h3>
-          <p>Five controlled experiments on a policy-grounded customer support assistant (Claude API), plus JSON extraction and chain-of-thought tests with GPT-4o-mini. Outputs are checked programmatically, not by eye.</p>
-          <p class="result">Policy grounding fixed a hallucinated 30-day return window; triage returned valid JSON on 8/8 messages, including Spanish and sarcasm.</p>
-          <div class="chips"><span>Anthropic API</span><span>OpenAI API</span><span>Few-shot</span><span>JSON schema</span></div>
-          <div class="links">
-            <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project3">Code &amp; README →</a>
-          </div>
-        </article>
+      <!-- Applied ML -->
+      <div class="group">
+        <div class="group-title"><h3>Applied machine learning &amp; analytics</h3><span>DSC 550 · 630 · 670</span></div>
+        <div class="grid">
+          <article class="card item" data-cat="genai">
+            <div class="tag">Generative AI · LLM evaluation</div>
+            <h3>Prompt Engineering with Large Language Models</h3>
+            <p>Five controlled experiments on a policy-grounded customer support assistant (Claude API), plus JSON extraction and chain-of-thought tests with GPT-4o-mini. Outputs are checked programmatically, not by eye.</p>
+            <p class="result">Policy grounding fixed a hallucinated 30-day return window; triage returned valid JSON on 8/8 messages, including Spanish and sarcasm.</p>
+            <div class="chips"><span>Anthropic API</span><span>OpenAI API</span><span>Few-shot</span><span>JSON schema</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project3">Code &amp; README →</a></div>
+          </article>
 
-        <article class="card">
-          <div class="tag">Classification · Model selection</div>
-          <h3>Loan Approval Model Selection</h3>
-          <p>Predicted loan approval for 614 applications. Built scikit-learn pipelines and used GridSearchCV to tune KNN, then treated the model type itself as a hyperparameter across KNN, logistic regression and random forest.</p>
-          <p class="result">Best model: logistic regression (C = 10) at 82.3% test accuracy, up from 78.1% for default KNN.</p>
-          <div class="chips"><span>Pipeline</span><span>GridSearchCV</span><span>KNN</span><span>Logistic regression</span></div>
-          <div class="links">
-            <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project7">Code &amp; README →</a>
-          </div>
-        </article>
+          <article class="card item" data-cat="ml">
+            <div class="tag">Classification · Model selection</div>
+            <h3>Loan Approval Model Selection</h3>
+            <p>Predicted loan approval for 614 applications. Built scikit-learn pipelines and used GridSearchCV to tune KNN, then treated the model type itself as a hyperparameter across KNN, logistic regression and random forest.</p>
+            <p class="result">Best model: logistic regression (C = 10) at 82.3% test accuracy, up from 78.1% for default KNN.</p>
+            <div class="chips"><span>Pipeline</span><span>GridSearchCV</span><span>KNN</span><span>Logistic regression</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project7">Code &amp; README →</a></div>
+          </article>
 
-        <article class="card">
-          <div class="tag">Unsupervised learning · Healthcare</div>
-          <h3>Clustering ALS Patients with K-Means</h3>
-          <p>Grouped 2,223 ALS patients on 100 clinical features to look for distinct progression patterns. Standardized features, selected k by silhouette score and visualized clusters with PCA.</p>
-          <p class="result">Two patient subgroups emerged (k = 2), a starting point for progression research and feature engineering.</p>
-          <div class="chips"><span>K-means</span><span>Silhouette score</span><span>PCA</span><span>StandardScaler</span></div>
-          <div class="links">
-            <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project5">Code &amp; README →</a>
-            <a href="Project5/Anish_Samuel_DS630_Assignment4.html">View report →</a>
-          </div>
-        </article>
+          <article class="card item" data-cat="ml">
+            <div class="tag">Unsupervised learning · Healthcare</div>
+            <h3>Clustering ALS Patients with K-Means</h3>
+            <p>Grouped 2,223 ALS patients on 100 clinical features to look for distinct progression patterns. Standardized features, selected k by silhouette score and visualized clusters with PCA.</p>
+            <p class="result">Two patient subgroups emerged (k = 2), a starting point for progression research and feature engineering.</p>
+            <div class="chips"><span>K-means</span><span>Silhouette score</span><span>PCA</span><span>StandardScaler</span></div>
+            <div class="links">
+              <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project5">Code &amp; README →</a>
+              <a href="Project5/Anish_Samuel_DS630_Assignment4.html">View report →</a>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="tag">Feature engineering · Regression</div>
-          <h3>Feature Reduction &amp; Selection</h3>
-          <p>Compared PCA, variance thresholding and χ² feature selection on Kaggle house prices and the UCI mushroom dataset, and explained why each method helped or hurt.</p>
-          <p class="result">Variance threshold beat the baseline (R² 0.656 vs 0.643). Five χ² features kept 97.4% mushroom accuracy.</p>
-          <div class="chips"><span>PCA</span><span>SelectKBest</span><span>Linear regression</span><span>Decision tree</span></div>
-          <div class="links">
-            <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project1">Code &amp; README →</a>
-          </div>
-        </article>
+          <article class="card item" data-cat="ml">
+            <div class="tag">Feature engineering · Regression</div>
+            <h3>Feature Reduction &amp; Selection</h3>
+            <p>Compared PCA, variance thresholding and χ² feature selection on Kaggle house prices and the UCI mushroom dataset, and explained why each method helped or hurt.</p>
+            <p class="result">Variance threshold beat the baseline (R² 0.656 vs 0.643). Five χ² features kept 97.4% mushroom accuracy.</p>
+            <div class="chips"><span>PCA</span><span>SelectKBest</span><span>Linear regression</span><span>Decision tree</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project1">Code &amp; README →</a></div>
+          </article>
 
-        <article class="card">
-          <div class="tag">Case study · ML systems</div>
-          <h3>How Google Maps Predicts Traffic</h3>
-          <p>An end-to-end breakdown of a production ML system: problem framing, GPS and historical data sources, preprocessing, graph neural network modeling and ETA evaluation.</p>
-          <p class="result">Shows how to explain a real ML system clearly to a non-technical audience.</p>
-          <div class="chips"><span>Predictive analytics</span><span>GNNs</span><span>Technical writing</span></div>
-          <div class="links">
-            <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project4">README →</a>
-            <a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/Project4/Anish_Samuel_Week5_Assignment5.pdf">PDF →</a>
-          </div>
-        </article>
+          <article class="card item" data-cat="ml">
+            <div class="tag">Case study · ML systems</div>
+            <h3>How Google Maps Predicts Traffic</h3>
+            <p>An end-to-end breakdown of a production ML system: problem framing, GPS and historical data sources, preprocessing, graph neural network modeling and ETA evaluation.</p>
+            <p class="result">Shows how to explain a real ML system clearly to a non-technical audience.</p>
+            <div class="chips"><span>Predictive analytics</span><span>GNNs</span><span>Technical writing</span></div>
+            <div class="links">
+              <a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project4">README →</a>
+              <a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/Project4/Anish_Samuel_Week5_Assignment5.pdf">PDF →</a>
+            </div>
+          </article>
+        </div>
       </div>
 
-      <h3 class="group">Data preparation foundations</h3>
-      <div class="grid">
-        <article class="card">
-          <div class="tag">SQL · SQLite</div>
-          <h3>Querying a Pet-Owner Database</h3>
-          <p>Answered seven business questions against a two-table SQLite database from Python using GROUP BY, HAVING, subqueries and NULL handling.</p>
-          <div class="chips"><span>SQL</span><span>sqlite3</span><span>Subqueries</span></div>
-          <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project8">Code &amp; README →</a></div>
-        </article>
+      <!-- GenAI -->
+      <div class="group">
+        <div class="group-title"><h3>Generative AI projects</h3><span>DSC 670 · Weeks 2–7</span></div>
+        <p class="group-note">Six notebook projects covering prompt design, image generation, retrieval-grounded chat and efficient model fine-tuning.</p>
+        <div class="grid">
+          <article class="card item" data-cat="genai">
+            <div class="tag">Week 2 · Document AI · Structured output</div>
+            <h3>Invoice Extraction with Prompt Engineering</h3>
+            <p>Transcribes an invoice PDF with an OpenAI vision-capable model, then maps the transcription to schema-constrained JSON. Separating extraction from structuring helps diagnose errors and preserve unusual source values instead of silently correcting them.</p>
+            <p class="result">Checks completeness, source fidelity and JSON structure; recommends deterministic financial validation and human review for exceptions.</p>
+            <div class="chips"><span>OpenAI API</span><span>PDF input</span><span>JSON Schema</span><span>Python</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/Project1.ipynb">Notebook →</a><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/README.md">Project guide →</a></div>
+          </article>
 
-        <article class="card">
-          <div class="tag">Web scraping · Data cleaning</div>
-          <h3>Scraping, Outliers &amp; SQLite</h3>
-          <p>Scraped a Wikipedia GDP table with BeautifulSoup and flattened its two-row header, removed outliers with the 1.5×IQR rule (1,000 → 974 rows), and built a SQLite contacts table.</p>
-          <div class="chips"><span>BeautifulSoup</span><span>IQR</span><span>Seaborn</span></div>
-          <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project9">Code &amp; README →</a></div>
-        </article>
+          <article class="card item" data-cat="genai">
+            <div class="tag">Week 3 · Vision AI · Image generation</div>
+            <h3>Stable Diffusion Image Generation &amp; Editing</h3>
+            <p>Creates a photorealistic modern living room with Stable Diffusion XL, then edits the generated image to change the sofa and add wall art while preserving the rest of the scene.</p>
+            <p class="result">Uses fixed seeds for reproducibility and saves outputs to <code>stable_diffusion_outputs/</code>.</p>
+            <div class="chips"><span>Stable Diffusion XL</span><span>Diffusers</span><span>PyTorch</span><span>Image-to-image</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/Project2.ipynb">Notebook →</a></div>
+          </article>
 
-        <article class="card">
-          <div class="tag">pandas wrangling</div>
-          <h3>Boston Housing &amp; Adult Income</h3>
-          <p>Loaded a headerless census file of 32,561 rows, cleaned text fields, filtered and grouped by occupation, merged subsets, and explored housing prices with log-scaled plots.</p>
-          <div class="chips"><span>pandas</span><span>groupby</span><span>merge</span></div>
-          <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project6">Code &amp; README →</a></div>
-        </article>
+          <article class="card item" data-cat="genai">
+            <div class="tag">Week 4 · Prompt engineering · LLM evaluation</div>
+            <h3>Few-Shot Extraction &amp; Reasoning</h3>
+            <p>Compares zero-shot and one-shot prompts for extracting shoe orders and calculating totals from emails. A second exercise uses worked examples in a multi-turn chat to answer an age word problem.</p>
+            <p class="result">Parses structured JSON and checks the final numerical answer programmatically.</p>
+            <div class="chips"><span>OpenAI API</span><span>Zero-shot</span><span>One-shot</span><span>JSON</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/Project3.ipynb">Notebook →</a></div>
+          </article>
+
+          <article class="card item" data-cat="genai">
+            <div class="tag">Week 5 · RAG · Grounded chatbot</div>
+            <h3>Chat with the Apollo 11 Article</h3>
+            <p>Scrapes and cleans the Apollo 11 Wikipedia article, splits it into section-aware overlapping chunks, embeds them with MiniLM and retrieves relevant passages using a FAISS vector index. A Qwen instruction model answers from retrieved context and cites its passages.</p>
+            <p class="result">Includes a Gradio chat interface, conversation-aware retrieval and a closed-book baseline for comparison.</p>
+            <div class="chips"><span>Sentence Transformers</span><span>FAISS</span><span>Qwen 2.5</span><span>Gradio</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/Project4.ipynb">Notebook →</a></div>
+          </article>
+
+          <article class="card item" data-cat="genai">
+            <div class="tag">Week 6 · NLP · Sentiment classification</div>
+            <h3>Fine-Tuning DistilBERT on IMDb Reviews</h3>
+            <p>Fine-tunes DistilBERT on a 2,000-review training sample from IMDb and evaluates on 500 held-out reviews. Tests predictions on new reviews, including mixed sentiment and sarcasm.</p>
+            <p class="result">Correctly classifies 4 of 6 hand-picked test reviews; the errors expose difficulty with negation and sarcasm, even at high confidence.</p>
+            <div class="chips"><span>DistilBERT</span><span>Hugging Face</span><span>Trainer API</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/Project5.ipynb">Notebook →</a></div>
+          </article>
+
+          <article class="card item" data-cat="genai">
+            <div class="tag">Week 7 · LoRA · Efficient fine-tuning</div>
+            <h3>Instruction Fine-Tuning Mistral with LoRA</h3>
+            <p>Fine-tunes Mistral-7B-Instruct on 1,000 Dolly examples using 4-bit quantization and LoRA adapters, training only a small fraction of the model's parameters.</p>
+            <p class="result">Training loss falls from about 1.75 to 1.36. The notebook discusses the lack of a held-out test set, possible memorization and the need for stronger evaluation.</p>
+            <div class="chips"><span>Mistral-7B</span><span>LoRA / PEFT</span><span>4-bit quantization</span><span>CUDA</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/Project6.ipynb">Notebook →</a></div>
+          </article>
+        </div>
+        <div class="run-note item" data-cat="genai"><strong>Running these notebooks:</strong> dependencies and compute differ by project. Projects 1 and 3 need an OpenAI API key; Projects 2 and 4–6 download models or datasets. Stable Diffusion benefits from CUDA or Apple MPS, and Project 6's 4-bit training needs an NVIDIA GPU. See the <a href="https://github.com/samuelpanish-droid/DataScienceProjects/blob/main/GAI%20Projects/README.md">GAI Projects README</a>.</div>
+      </div>
+
+      <!-- Data prep -->
+      <div class="group">
+        <div class="group-title"><h3>Data preparation foundations</h3><span>DSC 540</span></div>
+        <div class="grid">
+          <article class="card item" data-cat="data">
+            <div class="tag">SQL · SQLite</div>
+            <h3>Querying a Pet-Owner Database</h3>
+            <p>Answered seven business questions against a two-table SQLite database from Python using GROUP BY, HAVING, subqueries and NULL handling.</p>
+            <div class="chips"><span>SQL</span><span>sqlite3</span><span>Subqueries</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project8">Code &amp; README →</a></div>
+          </article>
+
+          <article class="card item" data-cat="data">
+            <div class="tag">Web scraping · Data cleaning</div>
+            <h3>Scraping, Outliers &amp; SQLite</h3>
+            <p>Scraped a Wikipedia GDP table with BeautifulSoup and flattened its two-row header, removed outliers with the 1.5×IQR rule (1,000 → 974 rows), and built a SQLite contacts table.</p>
+            <div class="chips"><span>BeautifulSoup</span><span>IQR</span><span>Seaborn</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project9">Code &amp; README →</a></div>
+          </article>
+
+          <article class="card item" data-cat="data">
+            <div class="tag">pandas wrangling</div>
+            <h3>Boston Housing &amp; Adult Income</h3>
+            <p>Loaded a headerless census file of 32,561 rows, cleaned text fields, filtered and grouped by occupation, merged subsets, and explored housing prices with log-scaled plots.</p>
+            <div class="chips"><span>pandas</span><span>groupby</span><span>merge</span></div>
+            <div class="links"><a href="https://github.com/samuelpanish-droid/DataScienceProjects/tree/main/Project6">Code &amp; README →</a></div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT (shell) -->
-  <section id="contact">
-    <div class="wrap two-col">
-      <div>
-        <h2>Contact</h2>
-        <p class="section-intro">Open to data science and machine learning roles, collaborations and conversations about applied AI.</p>
+  <!-- ================= SKILLS ================= -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Skills</div>
+          <h2 class="sec">Technical toolkit</h2>
+        </div>
+        <p class="sec-intro">Tools I use in production engineering and in the projects above.</p>
       </div>
-      <ul class="contact-list">
-        <li><strong>GitHub</strong><a href="https://github.com/samuelpanish-droid">samuelpanish-droid</a></li>
-        <li><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/anish-samuel">linkedin.com/in/anish-samuel</a></li>
-        <li><strong>Email</strong><a href="mailto:samuel.p.anish@gmail.com">samuel.p.anish@gmail.com</a></li>
-      </ul>
+      <div class="skill-grid">
+        <div class="skill"><h3>Languages</h3><div class="chips"><span>Python</span><span>SQL</span><span>Java (J2EE)</span><span>JavaScript (React)</span></div></div>
+        <div class="skill"><h3>Machine learning</h3><div class="chips"><span>scikit-learn</span><span>Pipelines</span><span>Logistic regression</span><span>Random forest</span><span>KNN</span><span>K-means</span><span>PCA</span><span>GridSearchCV</span></div></div>
+        <div class="skill"><h3>Generative AI</h3><div class="chips"><span>Prompt engineering</span><span>Anthropic API</span><span>OpenAI API</span><span>RAG</span><span>FAISS</span><span>Hugging Face</span><span>LoRA / PEFT</span><span>Stable Diffusion</span></div></div>
+        <div class="skill"><h3>Data preparation</h3><div class="chips"><span>pandas</span><span>NumPy</span><span>BeautifulSoup</span><span>SQLite</span><span>ETL</span><span>Outlier handling</span></div></div>
+        <div class="skill"><h3>Software engineering</h3><div class="chips"><span>React</span><span>J2EE</span><span>CI/CD</span><span>Agile</span><span>Code review</span><span>Hybrid environments</span></div></div>
+        <div class="skill"><h3>Observability</h3><div class="chips"><span>Splunk</span><span>Dynatrace</span><span>Telemetry</span><span>Monitoring</span><span>Alerting</span><span>Log aggregation</span></div></div>
+        <div class="skill"><h3>Visualization</h3><div class="chips"><span>Matplotlib</span><span>Seaborn</span><span>Graphviz</span><span>Gradio</span></div></div>
+        <div class="skill"><h3>Tools</h3><div class="chips"><span>Jupyter</span><span>Git</span><span>GitHub</span><span>PyTorch</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Education</div>
+          <h2 class="sec">Graduate coursework</h2>
+        </div>
+        <p class="sec-intro">Courses behind the projects in this portfolio.</p>
+      </div>
+      <div class="edu">
+        <div>
+          <div class="eyebrow">In progress</div>
+          <h3>Graduate study in Data Science</h3>
+          <p>Applied coursework in data preparation, data mining, predictive analytics, generative AI and an applied capstone, each paired with a hands-on project.</p>
+        </div>
+        <ul class="courses">
+          <li><code>DSC 540</code><div>Data Preparation<span>Wrangling, web scraping, SQL and outlier handling</span></div></li>
+          <li><code>DSC 550</code><div>Data Mining<span>Feature selection, pipelines and model selection</span></div></li>
+          <li><code>DSC 630</code><div>Predictive Analytics<span>Clustering and ML system case studies</span></div></li>
+          <li><code>DSC 670</code><div>Advanced Uses of Generative AI<span>Prompting, RAG, diffusion and fine-tuning</span></div></li>
+          <li><code>DSC 680</code><div>Applied Data Science<span>Churn prediction with revenue impact</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" style="border-top:none">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2>Let's talk data science, ML and applied AI.</h2>
+          <p>Open to data science and machine learning roles, collaborations and conversations about applied AI.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:samuel.p.anish@gmail.com"><div><small>Email</small><strong>samuel.p.anish@gmail.com</strong></div><span>→</span></a>
+          <a href="https://www.linkedin.com/in/anish-samuel"><div><small>LinkedIn</small><strong>linkedin.com/in/anish-samuel</strong></div><span>→</span></a>
+          <a href="https://github.com/samuelpanish-droid"><div><small>GitHub</small><strong>samuelpanish-droid</strong></div><span>→</span></a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Samuel Anish · Built with GitHub Pages</div>
+  <div class="wrap">
+    <span>© 2026 Samuel Anish · Built with GitHub Pages</span>
+    <span><a href="#top">Back to top ↑</a></span>
+  </div>
 </footer>
 
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.filters button');
+    var items = document.querySelectorAll('#projects .item');
+    var groups = document.querySelectorAll('#projects .group');
+
+    buttons.forEach(function (b) {
+      var f = b.dataset.filter;
+      var n = 0;
+      items.forEach(function (it) { if (!it.classList.contains('run-note') && (f === 'all' || it.dataset.cat === f)) n++; });
+      b.querySelector('.n').textContent = n;
+    });
+
+    function apply(f) {
+      items.forEach(function (it) { it.classList.toggle('hide', f !== 'all' && it.dataset.cat !== f); });
+      groups.forEach(function (g) {
+        var visible = g.querySelectorAll('.item:not(.hide):not(.run-note)').length;
+        g.classList.toggle('hide', visible === 0);
+      });
+      buttons.forEach(function (b) { b.classList.toggle('on', b.dataset.filter === f); });
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { apply(b.dataset.filter); }); });
+  })();
+</script>
 </body>
 </html>
